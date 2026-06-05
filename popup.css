@@ -219,12 +219,12 @@ body {
   overflow: hidden !important;
 }
 
-/* 第五层：内容区域（减去状态栏26px） */
+/* 第五层：内容区域（全高度，状态栏已隐藏） */
 .jsoneditor-content,
 .jsoneditor-tree,
 .jsoneditor-ace {
   width: 100% !important;
-  height: calc(100% - 26px) !important;
+  height: 100% !important;
   flex: 1 !important;
   background: white !important;
   overflow-y: auto !important;
@@ -310,28 +310,25 @@ body {
 .ace_indent-guide { background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQIW2NkYGD4z8DAwMgABYxQGlkG5lwAAAABJRU5ErkJggg==') right repeat-y !important; }
 .ace_active-line { background: rgba(102, 126, 234, 0.05) !important; }
 
-/* JSONEditor状态栏 */
+/* JSONEditor状态栏 - 隐藏 */
 .jsoneditor-statusbar {
-  width: 100% !important;
-  height: 26px !important;
-  min-height: 26px !important;
-  max-height: 26px !important;
-  background: #f8f9fa !important;
-  border-top: 1px solid #e9ecef !important;
-  color: #6c757d !important;
-  font-size: 11px !important;
-  padding: 4px 12px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex-shrink: 0 !important;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
-.jsoneditor-statusbar-item {
-  padding: 2px 6px !important;
-  border-radius: 8px !important;
-  background: #e9ecef !important;
-  color: #495057 !important;
+/* JSONEditor验证错误容器 - 隐藏 */
+.jsoneditor-validation-errors-container,
+.jsoneditor-validation-errors {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
 /* ========== 其他组件 ========== */
