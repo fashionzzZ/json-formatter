@@ -1,69 +1,354 @@
-/* 固定浅色主题 - 简洁美观设计 */
+/* ========== 整体布局设计 ========== */
 
+/* 根元素 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* 页面容器 */
 body {
   width: 100%;
   height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* 主容器 - 限制最大尺寸 */
 .container {
   width: 95%;
-  max-width: 1200px;
+  max-width: 1400px;
   height: 90vh;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-height: 90vh;
+  background: white;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
 }
 
-/* 顶部标题栏 */
+/* ========== 固定高度区域 ========== */
+
+/* Header - 固定 */
 .header {
-  padding: 20px 30px;
+  height: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  padding: 0 30px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-shrink: 0;
 }
 
 .header-title {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 2px;
 }
 
-/* 工具栏 */
+/* Toolbar - 固定 */
 .toolbar {
-  padding: 15px 30px;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  padding: 0 30px;
   background: #f8f9fa;
   border-bottom: 1px solid #e9ecef;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   flex-shrink: 0;
 }
 
+/* Status Bar - 固定 */
+.status-bar {
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  padding: 0 30px;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6c757d;
+  flex-shrink: 0;
+}
+
+/* ========== 主内容区域 - 动态高度 ========== */
+
+.main-content {
+  flex: 1;
+  min-height: 0; /* 关键！让flex正常工作 */
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  overflow: hidden;
+}
+
+/* ========== 左侧输入区 ========== */
+
+.input-section {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  height: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #495057;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+#jsonInput {
+  flex: 1;
+  min-height: 0;
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-family: 'SF Mono', Monaco, Menlo, Courier New, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  background: white;
+  color: #212529;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#jsonInput:focus {
+  border-color: #667eea;
+}
+
+#jsonInput::placeholder {
+  color: #adb5bd;
+}
+
+/* ========== 右侧编辑器区 ========== */
+
+.editor-section {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editor-label {
+  height: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #495057;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.editor-wrapper {
+  flex: 1;
+  min-height: 0;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  background: white;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========== JSONEditor 完整优化 ========== */
+
+/* 第一层：jsoneditor 主容器 */
+.jsoneditor {
+  border: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* 第二层：jsoneditor-outer */
+.jsoneditor-outer {
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* 第三层：jsoneditor-main（如果存在） */
+.jsoneditor-main {
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* 第四层：菜单栏 */
+.jsoneditor-menu {
+  width: 100% !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  border-bottom: none !important;
+}
+
+/* 菜单按钮 */
+.jsoneditor-menu button {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  border-radius: 16px !important;
+  padding: 5px 14px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  margin: 0 4px !important;
+  transition: all 0.2s !important;
+}
+
+.jsoneditor-menu button:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: white !important;
+}
+
+.jsoneditor-menu button.jsoneditor-mode-active {
+  background: white !important;
+  color: #667eea !important;
+}
+
+/* 第五层：内容区域（减去菜单栏高度） */
+.jsoneditor-content,
+.jsoneditor-tree,
+.jsoneditor-ace {
+  width: 100% !important;
+  height: calc(100% - 42px) !important;
+  flex: 1 !important;
+  background: white !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+}
+
+/* 树形视图内部容器 */
+.jsoneditor-tree-inner {
+  width: 100% !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* 树形视图样式 */
+.jsoneditor-tree {
+  padding: 10px 12px !important;
+}
+
+.jsoneditor-tree button {
+  background: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 12px !important;
+  color: #495057 !important;
+  transition: all 0.2s !important;
+}
+
+.jsoneditor-tree button:hover {
+  background: #667eea !important;
+  color: white !important;
+  border-color: #667eea !important;
+}
+
+.jsoneditor-tree .jsoneditor-field {
+  color: #667eea !important;
+  font-weight: 600 !important;
+}
+
+.jsoneditor-tree .jsoneditor-value {
+  background: #f8f9fa !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+.jsoneditor-tree .jsoneditor-string { color: #28a745 !important; }
+.jsoneditor-tree .jsoneditor-number { color: #dc3545 !important; }
+.jsoneditor-tree .jsoneditor-boolean { color: #ffc107 !important; font-weight: 700 !important; }
+.jsoneditor-tree .jsoneditor-null { color: #6c757d !important; font-style: italic !important; }
+
+/* Ace 编辑器样式 */
+.ace_editor {
+  width: 100% !important;
+  height: 100% !important;
+  background: white !important;
+  font-family: 'SF Mono', Monaco, Menlo, Courier New, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+.ace_gutter {
+  background: #f8f9fa !important;
+  color: #6c757d !important;
+  border-right: 1px solid #e9ecef !important;
+}
+
+.ace_gutter-cell {
+  padding: 0 12px !important;
+}
+
+.ace_content {
+  background: white !important;
+}
+
+/* Ace语法高亮 */
+.ace_keyword { color: #667eea !important; font-weight: 600 !important; }
+.ace_string { color: #28a745 !important; }
+.ace_number { color: #dc3545 !important; }
+.ace_constant.ace_boolean { color: #ffc107 !important; font-weight: 700 !important; }
+.ace_constant.ace_language { color: #6c757d !important; font-style: italic !important; }
+.ace_punctuation { color: #495057 !important; }
+.ace_indent-guide { background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQIW2NkYGD4z8DAwMgABYxQGlkG5lwAAAABJRU5ErkJggg==') right repeat-y !important; }
+.ace_active-line { background: rgba(102, 126, 234, 0.05) !important; }
+
+/* ========== 其他组件 ========== */
+
+/* 按钮样式 */
 .btn {
   padding: 8px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -72,12 +357,12 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
 }
 
 .btn-secondary {
@@ -90,252 +375,23 @@ body {
   transform: translateY(-1px);
 }
 
-.btn.loading {
-  opacity: 0.7;
-  pointer-events: none;
-}
-
-.btn.success {
-  background: #28a745 !important;
-}
-
-.btn.error {
-  background: #dc3545 !important;
-}
-
-/* 主内容区 - 左右布局 */
-.main-content {
-  flex: 1;
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  overflow: hidden;
-  background: #f8f9fa;
-}
-
-/* 左侧：输入区域 */
-.input-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 400px;
-}
-
-.input-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6c757d;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-#jsonInput {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-  min-height: calc(100vh - 200px);
-  padding: 12px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  background: #ffffff;
-  color: #212529;
-  resize: none;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-#jsonInput:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-#jsonInput::placeholder {
-  color: #adb5bd;
-}
-
-/* 右侧：编辑器区域 */
-.editor-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 400px;
-  height: 100%;
-}
-
-.editor-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6c757d;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  flex-shrink: 0;
-}
-
-.editor-wrapper {
-  flex: 1;
-  width: 100%;
-  min-height: calc(100vh - 200px);
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  overflow: visible !important;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 强制内部div也使用flex */
-.editor-wrapper > div {
-  flex: 1 !important;
-  height: 100% !important;
-  overflow: hidden !important;
-}
-
-/* JSONEditor 样式覆盖 - 美化浅色主题 */
-
-/* 主编辑器容器 - 充分利用容器但不超出 */
-.jsoneditor {
-  border: none !important;
-  height: 100% !important;
-  max-height: 100% !important;
-  background: #ffffff !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
-}
-
-.jsoneditor-outer {
-  height: 100% !important;
-  max-height: 100% !important;
-  background: #ffffff !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
-}
-
-/* jsoneditor主内容容器 */
-.jsoneditor-main {
-  height: 100% !important;
-  max-height: 100% !important;
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
-}
-
-/* jsoneditor内容区域 */
-.jsoneditor-content {
-  height: calc(100% - 50px) !important;
-  max-height: calc(100% - 50px) !important;
-  flex: 1 !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  box-sizing: border-box !important;
-}
-
-/* 编辑器内部区域 - 树模式和代码模式 */
-.jsoneditor-tree,
-.jsoneditor-ace {
-  height: 100% !important;
-  max-height: 100% !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  box-sizing: border-box !important;
-}
-
-/* 树形编辑器内部容器 */
-.jsoneditor-tree-inner {
-  height: 100% !important;
-  max-height: 100% !important;
-  overflow-y: auto !important;
-  box-sizing: border-box !important;
-}
-
-/* Ace编辑器容器 */
-.ace_editor,
-.ace_content,
-.ace_text-layer {
-  height: 100% !important;
-  max-height: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.ace_scroller {
-  height: 100% !important;
-  max-height: 100% !important;
-  overflow-y: auto !important;
-  box-sizing: border-box !important;
-}
-
-/* 顶部菜单栏 - 固定高度不占用太多空间 */
-.jsoneditor-menu {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  border-bottom: none !important;
-  color: white !important;
-  padding: 8px 12px !important;
-  height: auto !important;
-  min-height: 40px !important;
-  max-height: 50px !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
-}
-
-.jsoneditor-menu button {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: white !important;
-  border-radius: 15px !important;
-  padding: 4px 10px !important;
-  font-size: 11px !important;
-  margin: 2px !important;
-  transition: all 0.3s ease !important;
-  box-sizing: border-box !important;
-}
-
-.jsoneditor-menu button:hover {
-  background: rgba(255, 255, 255, 0.3) !important;
-  transform: translateY(-1px) !important;
-}
-
-.jsoneditor-menu button.jsoneditor-mode-active {
-  background: white !important;
-  color: #667eea !important;
-}
-
-/* 搜索框 */
-.jsoneditor-search {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 2px solid #e9ecef !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-}
-
-.jsoneditor-search input {
-  border: none !important;
-  background: transparent !important;
-  color: #495057 !important;
-}
+.btn.loading { opacity: 0.7; pointer-events: none; }
+.btn.success { background: #28a745 !important; }
+.btn.error { background: #dc3545 !important; }
 
 /* 上下文菜单 */
 .jsoneditor-contextmenu {
-  background: #ffffff !important;
+  background: white !important;
   border: 1px solid #e9ecef !important;
-  border-radius: 8px !important;
+  border-radius: 12px !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
   padding: 8px 0 !important;
 }
 
 .jsoneditor-contextmenu-item {
   color: #495057 !important;
-  padding: 8px 15px !important;
-  transition: all 0.2s ease !important;
+  padding: 10px 16px !important;
+  transition: all 0.2s !important;
 }
 
 .jsoneditor-contextmenu-item:hover {
@@ -347,200 +403,21 @@ body {
   border-top: 1px solid #e9ecef !important;
 }
 
-/* 树形视图样式 */
-.jsoneditor-tree {
-  background: #ffffff !important;
-  padding: 15px !important;
+/* 搜索框 */
+.jsoneditor-search {
+  background: white !important;
+  border: 2px solid #e9ecef !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
-.jsoneditor-tree button {
-  background: #f8f9fa !important;
-  border: 1px solid #e9ecef !important;
-  border-radius: 15px !important;
+.jsoneditor-search input {
+  border: none !important;
+  background: transparent !important;
   color: #495057 !important;
-  transition: all 0.3s ease !important;
-}
-
-.jsoneditor-tree button:hover {
-  background: #667eea !important;
-  color: white !important;
-  border-color: #667eea !important;
-}
-
-.jsoneditor-tree .jsoneditor-field,
-.jsoneditor-tree .jsoneditor-value {
-  border-radius: 4px !important;
-}
-
-.jsoneditor-tree .jsoneditor-field {
-  color: #667eea !important;
-  font-weight: 500 !important;
-}
-
-.jsoneditor-tree .jsoneditor-value {
-  background: #f8f9fa !important;
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-}
-
-.jsoneditor-tree .jsoneditor-string {
-  color: #28a745 !important;
-}
-
-.jsoneditor-tree .jsoneditor-number {
-  color: #dc3545 !important;
-}
-
-.jsoneditor-tree .jsoneditor-boolean {
-  color: #ffc107 !important;
-  font-weight: 600 !important;
-}
-
-.jsoneditor-tree .jsoneditor-null {
-  color: #6c757d !important;
-  font-style: italic !important;
-}
-
-/* Ace编辑器样式 - 代码模式 */
-.ace_editor {
-  background: #ffffff !important;
-  font-family: 'Monaco', 'Menlo', 'Courier New', monospace !important;
-  font-size: 14px !important;
-  line-height: 1.6 !important;
-  height: 100% !important;
-  max-height: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.ace_gutter {
-  background: #f8f9fa !important;
-  color: #6c757d !important;
-  border-right: 1px solid #e9ecef !important;
-  padding: 5px !important;
-}
-
-.ace_gutter-cell {
-  padding: 0 8px !important;
-}
-
-.ace_content {
-  background: #ffffff !important;
-}
-
-.ace_text-layer {
-  background: #ffffff !important;
-}
-
-/* Ace语法高亮 - 浅色主题配色 */
-.ace_keyword {
-  color: #667eea !important;
-  font-weight: 600 !important;
-}
-
-.ace_string {
-  color: #28a745 !important;
-}
-
-.ace_number {
-  color: #dc3545 !important;
-}
-
-.ace_constant.ace_boolean {
-  color: #ffc107 !important;
-  font-weight: 600 !important;
-}
-
-.ace_constant.ace_language {
-  color: #6c757d !important;
-  font-style: italic !important;
-}
-
-.ace_punctuation {
-  color: #495057 !important;
-}
-
-.ace_indent-guide {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQIW2PQ09fPzwMDAwMzAABhCAABAAABAAABAAAB4MCTQIAAAouSURBVHjaYvj//z8DAwMDAwPABgAAAABJRU5ErkJggg==') right repeat-y !important;
-}
-
-/* 选中行高亮 */
-.ace_active-line {
-  background: rgba(102, 126, 234, 0.1) !important;
-}
-
-/* 搜索结果高亮 */
-.ace_search {
-  background: #fff3cd !important;
-  border-radius: 4px !important;
-}
-
-/* 错误标记 */
-.ace_error {
-  background: #fff5f5 !important;
-}
-
-/* 折叠图标 */
-.jsoneditor-collapse-left,
-.jsoneditor-collapse-right {
-  background: #667eea !important;
-}
-
-/* 拖拽指示线 */
-.jsoneditor-dragbar {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  width: 3px !important;
-  border-radius: 2px !important;
-}
-
-/* 状态指示 */
-.jsoneditor-statusbar {
-  background: #f8f9fa !important;
-  border-top: 1px solid #e9ecef !important;
-  color: #6c757d !important;
-  padding: 5px 10px !important;
-}
-
-.jsoneditor-statusbar-item {
-  padding: 3px 8px !important;
-  border-radius: 10px !important;
-  background: #e9ecef !important;
-}
-
-/* 框架边框 */
-.jsoneditor-frame {
-  border: 1px solid #e9ecef !important;
-  border-radius: 8px !important;
-}
-
-.jsoneditor-readonly {
-  background: #f8f9fa !important;
-}
-
-/* 复选框样式 */
-.jsoneditor-checkbox {
-  width: 16px !important;
-  height: 16px !important;
-  border-radius: 4px !important;
-  border: 2px solid #667eea !important;
-}
-
-.jsoneditor-checkbox:checked {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 /* 状态栏 */
-.status-bar {
-  padding: 10px 30px;
-  background: #f8f9fa;
-  border-top: 1px solid #e9ecef;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #6c757d;
-  flex-shrink: 0;
-}
-
 .status-left {
   display: flex;
   align-items: center;
@@ -555,18 +432,19 @@ body {
 /* 错误提示 */
 .error-display {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 15px 20px;
+  top: 24px;
+  right: 24px;
+  padding: 16px 24px;
   background: #fff5f5;
   border: 2px solid #fc8181;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #c53030;
   font-size: 14px;
   max-width: 400px;
-  box-shadow: 0 4px 12px rgba(197, 48, 48, 0.2);
+  box-shadow: 0 4px 16px rgba(197, 48, 48, 0.2);
   display: none;
   animation: slideIn 0.3s ease;
+  z-index: 1000;
 }
 
 .error-display.visible {
@@ -574,14 +452,8 @@ body {
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .btn-link {
@@ -591,24 +463,25 @@ body {
   cursor: pointer;
   font-size: 12px;
   text-decoration: underline;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 /* Toast通知 */
 .toast {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 24px;
+  right: 24px;
   padding: 12px 24px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
-  font-weight: 500;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .toast.visible {
@@ -616,7 +489,7 @@ body {
   visibility: visible;
 }
 
-/* 滚动条美化 */
+/* 滚动条 */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -635,39 +508,26 @@ body {
   background: #adb5bd;
 }
 
-/* 响应式设计 */
+/* 响应式 */
 @media (max-width: 768px) {
   .container {
     width: 100%;
     height: 100vh;
+    max-height: 100vh;
     border-radius: 0;
   }
 
-  .toolbar {
-    flex-wrap: wrap;
-  }
-
-  /* 移动端改为上下布局 */
   .main-content {
     flex-direction: column;
   }
 
   .input-section,
   .editor-section {
-    min-width: 100%;
     flex: 1;
-  }
-
-  #jsonInput {
-    min-height: 200px;
-  }
-
-  .editor-wrapper {
-    min-height: 300px;
+    min-width: 100%;
   }
 }
 
-/* 辅助类 */
 .hidden {
   display: none !important;
 }
