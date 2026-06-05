@@ -209,50 +209,22 @@ body {
   overflow: hidden !important;
 }
 
-/* 第四层：菜单栏 */
+/* 第四层：菜单栏 - 隐藏 */
 .jsoneditor-menu {
-  width: 100% !important;
-  height: 42px !important;
-  min-height: 42px !important;
-  max-height: 42px !important;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  color: white !important;
-  padding: 8px 12px !important;
-  display: flex !important;
-  align-items: center !important;
-  flex-shrink: 0 !important;
-  border-bottom: none !important;
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
 }
 
-/* 菜单按钮 */
-.jsoneditor-menu button {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  color: white !important;
-  border-radius: 16px !important;
-  padding: 5px 14px !important;
-  font-size: 11px !important;
-  font-weight: 500 !important;
-  margin: 0 4px !important;
-  transition: all 0.2s !important;
-}
-
-.jsoneditor-menu button:hover {
-  background: rgba(255, 255, 255, 0.25) !important;
-  border-color: white !important;
-}
-
-.jsoneditor-menu button.jsoneditor-mode-active {
-  background: white !important;
-  color: #667eea !important;
-}
-
-/* 第五层：内容区域（减去菜单栏高度） */
+/* 第五层：内容区域（全高度，菜单已隐藏） */
 .jsoneditor-content,
 .jsoneditor-tree,
 .jsoneditor-ace {
   width: 100% !important;
-  height: calc(100% - 42px) !important;
+  height: 100% !important;
   flex: 1 !important;
   background: white !important;
   overflow-y: auto !important;
