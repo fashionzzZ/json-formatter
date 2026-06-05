@@ -15,8 +15,8 @@ function initEditor() {
   const container = document.getElementById('jsoneditor');
 
   const options = {
-    mode: 'tree',
-    modes: ['tree', 'code'], // Allow switching between tree and code
+    mode: 'code', // Default to code mode
+    modes: ['code', 'tree'], // Allow switching between code and tree
     onError: (error) => {
       showError(error.toString());
     },
@@ -41,16 +41,20 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
 // Check if there's pending data from context menu
 async function checkPendingData() {
   try {
-    const result = await chrome.storage.local.get('pendingJson');
+    const result = await chrome.storage.local.get(['pendingJson', 'autoFormat']);
     if (result.pendingJson) {
       const jsonInput = document.getElementById('jsonInput');
       jsonInput.value = result.pendingJson;
 
-      // Auto-format the data
-      formatJson();
+      // Auto-format the data if requested
+      if (result.autoFormat) {
+        setTimeout(() => {
+          formatJson();
+        }, 100); // Small delay to ensure editor is ready
+      }
 
       // Clear pending data
-      await chrome.storage.local.remove('pendingJson');
+      await chrome.storage.local.remove(['pendingJson', 'autoFormat']);
     }
   } catch (error) {
     console.error('Error checking pending data:', error);
