@@ -1,5 +1,12 @@
 // background.js - Context menu and message routing
 
+// Handle extension icon click - open popup in new tab
+chrome.action.onClicked.addListener((tab) => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL('popup.html')
+  });
+});
+
 // Create context menu on installation
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
