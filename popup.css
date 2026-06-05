@@ -127,7 +127,7 @@ body {
 
 #jsonInput {
   width: 100%;
-  height: 150px;
+  height: 100px;
   padding: 12px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
@@ -165,7 +165,8 @@ body {
 }
 
 .editor-wrapper {
-  height: calc(100vh - 350px);
+  height: calc(100vh - 300px);
+  min-height: 500px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
   overflow: hidden;
@@ -550,11 +551,12 @@ body {
   }
 
   #jsonInput {
-    height: 120px;
+    height: 80px;
   }
 
   .editor-wrapper {
-    height: calc(100vh - 320px);
+    height: calc(100vh - 260px);
+    min-height: 400px;
   }
 }
 
