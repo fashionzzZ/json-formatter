@@ -172,56 +172,262 @@ body {
   background: #ffffff;
 }
 
-/* JSONEditor 样式覆盖 - 浅色主题 */
+/* JSONEditor 样式覆盖 - 美化浅色主题 */
+
+/* 主编辑器容器 */
 .jsoneditor {
   border: none !important;
   height: 100% !important;
+  background: #ffffff !important;
 }
 
 .jsoneditor-outer {
   height: 100% !important;
+  background: #ffffff !important;
 }
 
+/* 顶部菜单栏 - 美化渐变 */
 .jsoneditor-menu {
-  background: #f8f9fa !important;
-  border-bottom: 1px solid #e9ecef !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-bottom: none !important;
+  color: white !important;
+  padding: 10px 15px !important;
+}
+
+.jsoneditor-menu button {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  border-radius: 15px !important;
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.jsoneditor-menu button:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+.jsoneditor-menu button.jsoneditor-mode-active {
+  background: white !important;
+  color: #667eea !important;
+}
+
+/* 搜索框 */
+.jsoneditor-search {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid #e9ecef !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.jsoneditor-search input {
+  border: none !important;
+  background: transparent !important;
   color: #495057 !important;
 }
 
+/* 上下文菜单 */
 .jsoneditor-contextmenu {
   background: #ffffff !important;
   border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  padding: 8px 0 !important;
 }
 
 .jsoneditor-contextmenu-item {
   color: #495057 !important;
+  padding: 8px 15px !important;
+  transition: all 0.2s ease !important;
 }
 
 .jsoneditor-contextmenu-item:hover {
-  background: #f8f9fa !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
 }
 
-.jsoneditor-search {
+.jsoneditor-contextmenu-separator {
+  border-top: 1px solid #e9ecef !important;
+}
+
+/* 树形视图样式 */
+.jsoneditor-tree {
+  background: #ffffff !important;
+  padding: 15px !important;
+}
+
+.jsoneditor-tree button {
   background: #f8f9fa !important;
   border: 1px solid #e9ecef !important;
+  border-radius: 15px !important;
+  color: #495057 !important;
+  transition: all 0.3s ease !important;
 }
 
-.jsoneditor-frame {
-  border: 1px solid #e9ecef !important;
+.jsoneditor-tree button:hover {
+  background: #667eea !important;
+  color: white !important;
+  border-color: #667eea !important;
 }
 
-/* Ace编辑器样式覆盖 - 浅色主题 */
+.jsoneditor-tree .jsoneditor-field,
+.jsoneditor-tree .jsoneditor-value {
+  border-radius: 4px !important;
+}
+
+.jsoneditor-tree .jsoneditor-field {
+  color: #667eea !important;
+  font-weight: 500 !important;
+}
+
+.jsoneditor-tree .jsoneditor-value {
+  background: #f8f9fa !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+}
+
+.jsoneditor-tree .jsoneditor-string {
+  color: #28a745 !important;
+}
+
+.jsoneditor-tree .jsoneditor-number {
+  color: #dc3545 !important;
+}
+
+.jsoneditor-tree .jsoneditor-boolean {
+  color: #ffc107 !important;
+  font-weight: 600 !important;
+}
+
+.jsoneditor-tree .jsoneditor-null {
+  color: #6c757d !important;
+  font-style: italic !important;
+}
+
+/* Ace编辑器样式 - 代码模式 */
 .ace_editor {
   background: #ffffff !important;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace !important;
+  font-size: 14px !important;
+  line-height: 1.8 !important;
 }
 
 .ace_gutter {
   background: #f8f9fa !important;
   color: #6c757d !important;
+  border-right: 1px solid #e9ecef !important;
+  padding: 5px !important;
+}
+
+.ace_gutter-cell {
+  padding: 0 8px !important;
 }
 
 .ace_content {
   background: #ffffff !important;
+}
+
+.ace_text-layer {
+  background: #ffffff !important;
+}
+
+/* Ace语法高亮 - 浅色主题配色 */
+.ace_keyword {
+  color: #667eea !important;
+  font-weight: 600 !important;
+}
+
+.ace_string {
+  color: #28a745 !important;
+}
+
+.ace_number {
+  color: #dc3545 !important;
+}
+
+.ace_constant.ace_boolean {
+  color: #ffc107 !important;
+  font-weight: 600 !important;
+}
+
+.ace_constant.ace_language {
+  color: #6c757d !important;
+  font-style: italic !important;
+}
+
+.ace_punctuation {
+  color: #495057 !important;
+}
+
+.ace_indent-guide {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQIW2PQ09fPzwMDAwMzAABhCAABAAABAAABAAAB4MCTQIAAAouSURBVHjaYvj//z8DAwMDAwPABgAAAABJRU5ErkJggg==') right repeat-y !important;
+}
+
+/* 选中行高亮 */
+.ace_active-line {
+  background: rgba(102, 126, 234, 0.1) !important;
+}
+
+/* 搜索结果高亮 */
+.ace_search {
+  background: #fff3cd !important;
+  border-radius: 4px !important;
+}
+
+/* 错误标记 */
+.ace_error {
+  background: #fff5f5 !important;
+}
+
+/* 折叠图标 */
+.jsoneditor-collapse-left,
+.jsoneditor-collapse-right {
+  background: #667eea !important;
+}
+
+/* 拖拽指示线 */
+.jsoneditor-dragbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  width: 3px !important;
+  border-radius: 2px !important;
+}
+
+/* 状态指示 */
+.jsoneditor-statusbar {
+  background: #f8f9fa !important;
+  border-top: 1px solid #e9ecef !important;
+  color: #6c757d !important;
+  padding: 5px 10px !important;
+}
+
+.jsoneditor-statusbar-item {
+  padding: 3px 8px !important;
+  border-radius: 10px !important;
+  background: #e9ecef !important;
+}
+
+/* 框架边框 */
+.jsoneditor-frame {
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+}
+
+.jsoneditor-readonly {
+  background: #f8f9fa !important;
+}
+
+/* 复选框样式 */
+.jsoneditor-checkbox {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  border: 2px solid #667eea !important;
+}
+
+.jsoneditor-checkbox:checked {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 /* 状态栏 */
