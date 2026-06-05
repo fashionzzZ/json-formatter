@@ -331,6 +331,16 @@ body {
   overflow: hidden !important;
 }
 
+/* JSONEditor主菜单栏容器 - 隐藏 */
+.has-main-menu-bar {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
 /* ========== 其他组件 ========== */
 
 /* 按钮样式 */
