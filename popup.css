@@ -182,65 +182,56 @@ body {
   min-height: calc(100vh - 200px);
   border: 2px solid #e9ecef;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible !important;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 /* 强制内部div也使用flex */
 .editor-wrapper > div {
   flex: 1 !important;
   height: 100% !important;
+  overflow: hidden !important;
 }
 
 /* JSONEditor 样式覆盖 - 美化浅色主题 */
 
-/* 主编辑器容器 - 强制最大高度 */
+/* 主编辑器容器 - 充分利用容器但不超出 */
 .jsoneditor {
   border: none !important;
   height: 100% !important;
   flex: 1 !important;
-  min-height: 100% !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
   background: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
 .jsoneditor-outer {
   height: 100% !important;
   flex: 1 !important;
-  min-height: 100% !important;
   background: #ffffff !important;
-  position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
 }
 
-/* 编辑器内部区域 - 强制最大化 */
+/* 编辑器内部区域 - 减去菜单栏高度(约50px) */
 .jsoneditor-tree,
 .jsoneditor-ace {
-  height: 100% !important;
-  flex: 1 !important;
-  min-height: calc(100% - 50px) !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-}
-
-/* 树形编辑器内部 */
-div.jsoneditor-tree {
   height: calc(100% - 50px) !important;
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
 }
 
-/* Ace编辑器 */
+/* 树形编辑器内部容器 */
+div.jsoneditor-tree-inner {
+  height: 100% !important;
+}
+
+/* Ace编辑器容器 */
 .ace_editor {
   height: 100% !important;
   min-height: 100% !important;
