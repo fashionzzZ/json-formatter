@@ -231,40 +231,6 @@ function fallbackCopy() {
   document.body.removeChild(textArea);
 }
 
-// Save JSON button handler
-function saveJson() {
-  if (!currentJson) {
-    showToast('请先格式化JSON数据');
-    return;
-  }
-
-  try {
-    const json = editor.get();
-    const jsonStr = JSON.stringify(json, null, 2);
-
-    // Create download link
-    const blob = new Blob([jsonStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'formatted-json.json';
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-
-    // Cleanup
-    setTimeout(() => {
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 100);
-
-    showToast('文件已保存');
-
-  } catch (error) {
-    showError('保存失败: ' + error.message);
-  }
-}
 
 // Show error message
 function showError(message, errorObj = null) {
@@ -335,9 +301,6 @@ function setupEventListeners() {
   // Copy button
   document.getElementById('copyBtn').addEventListener('click', copyJson);
 
-  // Save button
-  document.getElementById('saveBtn').addEventListener('click', saveJson);
-
   // Error details button
   document.getElementById('errorDetailsBtn').addEventListener('click', showErrorDetails);
 
@@ -358,12 +321,7 @@ function setupEventListeners() {
       formatJson();
     }
 
-    // Ctrl/Cmd + S to save
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-      e.preventDefault();
-      saveJson();
-    }
-
+    
     // Ctrl/Cmd + C to copy (when not in input)
     if ((e.ctrlKey || e.metaKey) && e.key === 'c' && document.activeElement.id !== 'jsonInput') {
       e.preventDefault();

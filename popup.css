@@ -103,17 +103,22 @@ body {
   background: #dc3545 !important;
 }
 
-/* 主内容区 - 单栏布局 */
+/* 主内容区 - 左右布局 */
 .main-content {
   flex: 1;
+  display: flex;
+  gap: 20px;
   padding: 20px;
   overflow: hidden;
   background: #f8f9fa;
 }
 
-/* 输入区域 */
+/* 左侧：输入区域 */
 .input-section {
-  margin-bottom: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
 }
 
 .input-label {
@@ -126,8 +131,10 @@ body {
 }
 
 #jsonInput {
+  flex: 1;
   width: 100%;
-  height: 100px;
+  height: 100%;
+  min-height: calc(100vh - 200px);
   padding: 12px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
@@ -150,9 +157,12 @@ body {
   color: #adb5bd;
 }
 
-/* 编辑器区域 */
+/* 右侧：编辑器区域 */
 .editor-section {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
 }
 
 .editor-label {
@@ -165,8 +175,10 @@ body {
 }
 
 .editor-wrapper {
-  height: calc(100vh - 300px);
-  min-height: 500px;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 200px);
   border: 2px solid #e9ecef;
   border-radius: 8px;
   overflow: hidden;
@@ -177,24 +189,25 @@ body {
 
 /* JSONEditor 样式覆盖 - 美化浅色主题 */
 
-/* 主编辑器容器 - 强制最大高度 */
+/* 主编辑器容器 - 自适应最大高度 */
 .jsoneditor {
   border: none !important;
-  height: calc(100vh - 300px) !important;
-  min-height: 500px !important;
+  height: 100% !important;
+  flex: 1 !important;
   background: #ffffff !important;
 }
 
 .jsoneditor-outer {
   height: 100% !important;
+  flex: 1 !important;
   background: #ffffff !important;
 }
 
 /* 编辑器内部区域 */
 .jsoneditor-tree,
 .jsoneditor-ace {
-  height: calc(100vh - 340px) !important;
-  min-height: 460px !important;
+  height: calc(100% - 40px) !important;
+  flex: 1 !important;
 }
 
 /* 顶部菜单栏 - 美化渐变 */
@@ -561,13 +574,23 @@ body {
     flex-wrap: wrap;
   }
 
+  /* 移动端改为上下布局 */
+  .main-content {
+    flex-direction: column;
+  }
+
+  .input-section,
+  .editor-section {
+    min-width: 100%;
+    flex: 1;
+  }
+
   #jsonInput {
-    height: 80px;
+    min-height: 200px;
   }
 
   .editor-wrapper {
-    height: calc(100vh - 260px);
-    min-height: 400px;
+    min-height: 300px;
   }
 }
 
