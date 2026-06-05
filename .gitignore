@@ -1,6 +1,4 @@
-# Dependencies
-lib/jsoneditor.min.js
-lib/jsoneditor.min.css
+# Dependencies (none - all libs included in repo for Chrome extension)
 
 # Chrome extension build artifacts
 *.crx
