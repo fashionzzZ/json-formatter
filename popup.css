@@ -171,20 +171,30 @@ body {
   border-radius: 8px;
   overflow: hidden;
   background: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 /* JSONEditor 样式覆盖 - 美化浅色主题 */
 
-/* 主编辑器容器 */
+/* 主编辑器容器 - 强制最大高度 */
 .jsoneditor {
   border: none !important;
-  height: 100% !important;
+  height: calc(100vh - 300px) !important;
+  min-height: 500px !important;
   background: #ffffff !important;
 }
 
 .jsoneditor-outer {
   height: 100% !important;
   background: #ffffff !important;
+}
+
+/* 编辑器内部区域 */
+.jsoneditor-tree,
+.jsoneditor-ace {
+  height: calc(100vh - 340px) !important;
+  min-height: 460px !important;
 }
 
 /* 顶部菜单栏 - 美化渐变 */
@@ -313,6 +323,7 @@ body {
   font-family: 'Monaco', 'Menlo', 'Courier New', monospace !important;
   font-size: 14px !important;
   line-height: 1.8 !important;
+  height: 100% !important;
 }
 
 .ace_gutter {
