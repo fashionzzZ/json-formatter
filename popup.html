@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800, height=600">
+  <title>JSON Formatter</title>
+  <link rel="stylesheet" href="lib/jsoneditor.min.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button id="formatBtn" class="btn btn-primary">
+        <span class="icon">📋</span>
+        <span class="text">格式化</span>
+      </button>
+      <button id="compressBtn" class="btn btn-secondary">
+        <span class="icon">📦</span>
+        <span class="text">压缩</span>
+      </button>
+      <button id="copyBtn" class="btn btn-secondary">
+        <span class="icon">📄</span>
+        <span class="text">复制</span>
+      </button>
+      <button id="saveBtn" class="btn btn-secondary">
+        <span class="icon">💾</span>
+        <span class="text">保存</span>
+      </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Input Area -->
+      <div class="input-area">
+        <textarea id="jsonInput" placeholder="粘贴 JSON 数据..."></textarea>
+      </div>
+
+      <!-- Editor Area -->
+      <div class="editor-area">
+        <div id="jsoneditor"></div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span id="statusText">就绪</span>
+      <span id="jsonSize">0 bytes</span>
+    </div>
+
+    <!-- Error Display -->
+    <div id="errorDisplay" class="error-display hidden">
+      <span class="error-icon">⚠️</span>
+      <span id="errorMessage"></span>
+      <button id="errorDetailsBtn" class="btn-link">查看详情</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="lib/jsoneditor.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
