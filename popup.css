@@ -118,7 +118,8 @@ body {
 #jsonInput {
   flex: 1;
   min-height: 0;
-  padding: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
   border: 2px solid #e9ecef;
   border-radius: 12px;
   font-family: 'SF Mono', Monaco, Menlo, Courier New, monospace;
@@ -333,12 +334,8 @@ body {
 
 /* JSONEditor主菜单栏容器 - 隐藏 */
 .has-main-menu-bar {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* ========== 其他组件 ========== */
