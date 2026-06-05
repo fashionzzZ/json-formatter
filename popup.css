@@ -219,12 +219,12 @@ body {
   overflow: hidden !important;
 }
 
-/* 第五层：内容区域（全高度，菜单已隐藏） */
+/* 第五层：内容区域（减去状态栏26px） */
 .jsoneditor-content,
 .jsoneditor-tree,
 .jsoneditor-ace {
   width: 100% !important;
-  height: 100% !important;
+  height: calc(100% - 26px) !important;
   flex: 1 !important;
   background: white !important;
   overflow-y: auto !important;
