@@ -1,0 +1,15 @@
+# Dependencies
+lib/jsoneditor.min.js
+lib/jsoneditor.min.css
+
+# Chrome extension build artifacts
+*.crx
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
