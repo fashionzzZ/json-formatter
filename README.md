@@ -1,97 +1,129 @@
-# JSON Formatter Chrome Extension
+# JSON Formatter - Chrome Extension
 
-一个强大的Chrome浏览器插件，用于格式化、查看和编辑JSON数据。
+一个专业的Chrome浏览器插件，用于格式化、查看和编辑JSON数据。基于JSONEditor构建，提供现代化的用户界面和强大的JSON处理能力。
 
-## 功能特性
+## ✨ 功能特性
 
-- ✅ JSON格式化与美化（自动去除换行符）
-- ✅ 节点折叠/展开（树状结构查看）
-- ✅ JSON压缩（紧凑格式）
-- ✅ 复制到剪贴板
-- ✅ 保存为文件
-- ✅ 语法高亮（自动跟随系统主题：深色/浅色）
-- ✅ JSON验证与错误提示
-- ✅ JSON编辑功能（树模式和代码模式）
-- ✅ 右键菜单快速格式化选中的JSON文本
-- ✅ 键盘快捷键支持
+### 核心功能
+- **JSON格式化与美化** - 自动去除换行符，智能格式化JSON数据
+- **节点折叠/展开** - 树状结构查看，清晰有序地浏览复杂数据
+- **JSON压缩** - 一键压缩为紧凑格式，去除所有多余空格
+- **复制到剪贴板** - 快速复制格式化或压缩后的JSON
+- **JSON验证** - 实时验证语法，详细的错误提示和定位
+- **双模式编辑** - 支持代码模式和树模式切换，满足不同使用场景
 
-## 安装方法
+### 用户体验
+- **语法高亮** - 清晰的颜色区分（字符串、数字、布尔值、null）
+- **右键菜单集成** - 在任意网页选中JSON文本，右键即可快速格式化
+- **自动打开** - 格式化完成后自动在新标签页显示结果
+- **键盘快捷键** - 高效的操作体验
 
-### 开发模式安装
+## 🎨 界面设计
 
-1. 打开Chrome浏览器
-2. 访问 `chrome://extensions/`
-3. 启用右上角的"开发者模式"
-4. 点击"加载已解压的扩展程序"
-5. 选择本项目根目录
+- 现代化紫色渐变主题（#667eea → #764ba2）
+- 左右分栏布局，输入与结果清晰分离
+- 全高度编辑区域，最大化内容展示
+- 响应式设计，适配不同屏幕尺寸
+- 简洁干净的界面（隐藏冗余的菜单栏和状态栏）
 
-## 使用方法
+## 📖 使用方法
 
 ### 基本使用
 
-1. 点击浏览器工具栏的插件图标
-2. 在左侧文本框粘贴JSON数据
-3. 点击"格式化"按钮
-4. 在右侧查看格式化后的JSON
+1. **打开插件** - 点击浏览器工具栏的插件图标，自动在新标签页打开
+2. **输入数据** - 在左侧文本框粘贴或输入JSON数据
+3. **格式化** - 点击"格式化"按钮或使用快捷键 `Ctrl/Cmd + Enter`
+4. **查看结果** - 在右侧JSON编辑器中查看格式化后的数据
+5. **切换模式** - 可在代码模式和树模式之间切换查看
 
-### 右键菜单
+### 右键菜单快速格式化
 
-1. 在任何网页上选中JSON文本
-2. 右键点击选择"格式化选中的JSON"
-3. 点击插件图标查看格式化结果
+1. 在任意网页选中JSON文本
+2. 右键点击，选择"格式化选中的JSON"
+3. 自动在新标签页打开并显示格式化结果
+
+### 编辑与操作
+
+- **编辑模式** - 支持代码模式直接编辑JSON文本
+- **树模式** - 可展开/折叠节点，直观查看结构
+- **压缩** - 点击"压缩"按钮生成紧凑格式
+- **复制** - 点击"复制"按钮或使用 `Ctrl/Cmd + C` 复制内容
 
 ### 键盘快捷键
 
-- `Ctrl/Cmd + Enter`: 格式化JSON
-- `Ctrl/Cmd + S`: 保存JSON文件
-- `Ctrl/Cmd + C`: 复制JSON（编辑器焦点时）
+- `Ctrl/Cmd + Enter` - 格式化JSON
+- `Ctrl/Cmd + C` - 复制JSON（非输入框焦点时）
 
-## 技术栈
+## 🔧 技术栈
 
-- Chrome Extension Manifest V3
-- jsoneditor 9.10.2
-- Vanilla JavaScript
-- CSS Variables (自动主题切换)
+- **Chrome Extension Manifest V3** - 最新扩展标准
+- **JSONEditor 9.10.2** - 专业JSON编辑器库
+- **Vanilla JavaScript** - 无依赖，轻量高效
+- **现代CSS** - Flexbox布局，CSS变量主题系统
+- **Chrome APIs** - contextMenus, storage, tabs, clipboard
 
-## 开发
-
-### 项目结构
+## 📁 项目结构
 
 ```
-json-formatter-extension/
-├── manifest.json           # Extension configuration
-├── popup.html             # Main UI with input and editor
-├── popup.css              # Styles with theme support
-├── popup.js               # UI logic and editor integration
-├── background.js          # Context menu and message routing
-├── content.js             # Extract selected text from pages
-├── icons/
-│   ├── icon16.png         # Toolbar icon
-│   ├── icon48.png         # Extensions page icon
-│   └── icon128.png        # Installation icon
-└── lib/
-    ├── jsoneditor.min.js  # JSONEditor library
-    └── jsoneditor.min.css # JSONEditor styles
+json-formatter/
+├── manifest.json           # 扩展配置文件 (Manifest V3)
+├── popup.html             # 主界面HTML结构
+├── popup.css              # 样式文件（紫色渐变主题）
+├── popup.js               # 核心逻辑：格式化、压缩、复制等
+├── background.js          # 后台服务：右键菜单、消息路由
+├── content.js             # 内容脚本：提取选中文本
+├── icons/                 # 扩展图标
+│   ├── icon16.png         # 工具栏图标 (16x16)
+│   ├── icon48.png         # 扩展管理页图标 (48x48)
+│   └── icon128.png        # 安装和商店图标 (128x128)
+├── lib/                   # 第三方库
+│   ├── jsoneditor.min.js  # JSONEditor核心库
+│   └── jsoneditor.min.css # JSONEditor样式
+├── docs/                  # 文档目录
+│   └── specs/             # 设计文档
+└── LICENSE                # MIT许可证
 ```
 
-### 构建和测试
+## 🚀 版本历史
 
-1. 在Chrome中加载扩展
-2. 测试所有功能
-3. 检查主题切换
-4. 测试右键菜单集成
+### v1.0.0 (2025-06-05)
+**初始发布版本**
+- ✅ 核心JSON格式化功能
+- ✅ 左右分栏布局设计
+- ✅ 紫色渐变主题
+- ✅ 右键菜单集成
+- ✅ 代码模式和树模式切换
+- ✅ JSON压缩和复制功能
+- ✅ 智能错误提示和验证
+- ✅ 键盘快捷键支持
 
-## 版本历史
+## 📋 安装方法
 
-- v1.0.0 (2026-06-05): 初始版本
-  - 核心格式化功能
-  - 主题切换支持
-  - 右键菜单集成
+### 开发模式安装
 
-## 许可证
+1. 克隆或下载本项目到本地
+2. 打开Chrome浏览器，访问 `chrome://extensions/`
+3. 启用右上角的"开发者模式"开关
+4. 点击"加载已解压的扩展程序"
+5. 选择项目根目录
+6. 安装完成，工具栏会出现插件图标
 
-MIT License
+### 测试与验证
 
-## 作者
+- 点击插件图标，验证界面是否正确打开
+- 粘贴一段JSON数据，测试格式化功能
+- 在网页上选中JSON文本，测试右键菜单
+- 切换代码模式和树模式，验证功能完整性
 
-Claude Code AI Assistant
+## 📄 许可证
+
+本项目采用 [MIT License](LICENSE) 许可证。
+
+## 👨‍💻 作者
+
+**fashionzzZ**
+- Email: xuefa921@gmail.com
+
+---
+
+**💡 提示**: 这是一个专业级的JSON处理工具，适合开发者在日常工作中快速格式化、查看和编辑JSON数据。如有问题或建议，欢迎反馈！
