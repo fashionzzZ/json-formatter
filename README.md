@@ -52,7 +52,7 @@
 ### 键盘快捷键
 
 - `Ctrl/Cmd + Enter` - 格式化JSON
-- `Ctrl/Cmd + C` - 复制JSON（非输入框焦点时）
+- `Ctrl/Cmd + C` - 有选中内容时复制选中部分；无选中且焦点不在输入框时复制整个JSON
 
 ## 🔧 技术栈
 

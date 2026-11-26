@@ -203,6 +203,27 @@ async function copyJson() {
   }
 }
 
+// Whether the user currently has a text selection that should be copied natively.
+// Ace mirrors its selection into its hidden .ace_text-input textarea, so we
+// check that element too, not just window.getSelection().
+function hasActiveSelection() {
+  const selection = window.getSelection();
+  if (selection && selection.toString().length > 0) {
+    return true;
+  }
+
+  const active = document.activeElement;
+  if (active && typeof active.selectionStart === 'number' && typeof active.selectionEnd === 'number') {
+    try {
+      return active.selectionEnd > active.selectionStart;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 // Fallback copy method
 function fallbackCopy() {
   const textArea = document.createElement('textarea');
@@ -319,13 +340,26 @@ function setupEventListeners() {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault();
       formatJson();
+      return;
     }
 
-    
-    // Ctrl/Cmd + C to copy (when not in input)
-    if ((e.ctrlKey || e.metaKey) && e.key === 'c' && document.activeElement.id !== 'jsonInput') {
-      e.preventDefault();
-      copyJson();
+    // Ctrl/Cmd + C
+    if ((e.ctrlKey || e.metaKey) && e.key === 'c') {
+      // Never hijack a copy that has a selection: in code mode the result is an
+      // Ace editor whose "copy" command is an empty exec, so it relies on the
+      // browser's default action reading its hidden textarea. Calling
+      // preventDefault() here would silently break Cmd+C with a selection.
+      if (hasActiveSelection()) {
+        return;
+      }
+
+      // No selection: keep the shortcut that copies the whole JSON, but only
+      // when focus is outside the input textarea (so normal text copying there
+      // is untouched).
+      if (document.activeElement.id !== 'jsonInput') {
+        e.preventDefault();
+        copyJson();
+      }
     }
   });
 }
